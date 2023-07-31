@@ -17,6 +17,16 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
+### Docker
+
+You can use Docker to start the MobiData BW Modification Proxy, too. There is a `Makefile` which helps with default
+commands. Setting everything up and starting the container in foreground is the default target, so for a start just 
+use the command `make`.
+
+The docker container should not run as root. In order to have a proper user mapping, docker compose expects UID and GID
+by env variable. The Makefile automatically sets this by putting the environment in your local `.env` file.
+
+
 ## How to use
 
 With virtual environments, you can start `mitmproxy` with our converters like this:
@@ -30,6 +40,9 @@ You can also use the interactive mode by
 ```shell
 mitmproxy -s addons.py
 ```
+
+
+Using docker, you just have to use `make` to start the `mitmdump` service.
 
 The HTTP proxy will be available at `http://localhost:8080`.
 
