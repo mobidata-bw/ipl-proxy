@@ -15,6 +15,10 @@ COPY addons.py ./addons.py
 COPY requirements.txt .
 RUN pip install -r requirements.txt --no-cache-dir
 
+USER root
+RUN apk del rust cargo
+USER mitm
+
 COPY app ./app
 
 CMD ["mitmdump", "-s", "addons.py"]
