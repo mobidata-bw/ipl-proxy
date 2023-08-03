@@ -1,17 +1,23 @@
-FROM python:3.11
+FROM python:3.11-alpine
 
 WORKDIR /app
-EXPOSE 8080
 
 ENV PATH="${PATH}:/home/mitm/.local/bin/"
+EXPOSE 8080
 
-RUN adduser --system --disabled-password --home /home/mitm mitm && chown mitm /app
+RUN apk add rust cargo
+
+RUN adduser -S -D mitm && chown mitm /app
 USER mitm
 
 COPY addons.py ./addons.py
 
 COPY requirements.txt .
 RUN pip install -r requirements.txt
+
+USER root
+RUN apk del rust cargo
+USER mitm
 
 COPY app ./app
 
