@@ -1,8 +1,9 @@
 FROM python:3.11-alpine
 
 WORKDIR /app
-
 EXPOSE 8080
+
+RUN apk add --no-cache rust cargo
 
 RUN adduser -S -D mitm && chown mitm /app
 USER mitm
