@@ -41,7 +41,7 @@ build-image:
     - >-
       /kaniko/executor
       --context $CI_PROJECT_DIR/
-      --dockerfile $CI_PROJECT_DIR/Dockerfile
+      --dockerfile $CI_PROJECT_DIR/Dockerfile.deployment
       --destination $CI_REGISTRY_IMAGE/proxy:$CI_COMMIT_SHA
       --destination $CI_REGISTRY_IMAGE/proxy:$TARGET_IMAGE_TAG
       --cache-run-layers
