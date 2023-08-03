@@ -1,11 +1,11 @@
-FROM python:3.11
+FROM python:3.11-alpine
 
 WORKDIR /app
 
 EXPOSE 8080
 
-RUN adduser -S -D user && chown user /app
-USER user
+RUN adduser -S -D mitm && chown mitm /app
+USER mitm
 
 COPY addons.py ./addons.py
 

@@ -1,0 +1,13 @@
+name: mobidata-bw-proxy
+
+services:
+  proxy:
+    image: registry.git.sectio-aurea.org/mobidata-bw/proxy/proxy:dev
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./mitmproxy:/app/.mitmproxy
+    environment:
+      HOME: /app
+    command: mitmdump -s addons.py
+    restart: on-failure
