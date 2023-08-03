@@ -19,6 +19,9 @@ USER root
 RUN apk del rust cargo
 USER mitm
 
+RUN rm -rf ~/.cache
+RUN rm -rf ~/.cargo
+
 COPY app ./app
 
 CMD ["mitmdump", "-s", "addons.py"]
