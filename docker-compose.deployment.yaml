@@ -1,5 +1,8 @@
 name: mobidata-bw-proxy
 
+# Define placeholder for running a container with the same UID/GID as your local user
+x-local-user: &local-user ${DOCKER_LOCAL_USER:?Variable needs to be set in .env (e.g. "DOCKER_LOCAL_USER=1000:1000")}
+
 services:
   proxy:
     image: registry.git.sectio-aurea.org/mobidata-bw/proxy/proxy:dev
@@ -11,3 +14,4 @@ services:
       HOME: /app
     command: mitmdump -s addons.py
     restart: on-failure
+    user: *local-user
