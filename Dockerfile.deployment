@@ -1,11 +1,11 @@
-FROM python:3.11-alpine
+FROM python:3.11
 
 WORKDIR /app
 EXPOSE 8080
 
-RUN apk add --no-cache rust cargo
+ENV PATH="${PATH}:/home/mitm/.local/bin/"
 
-RUN adduser -S -D mitm && chown mitm /app
+RUN adduser --system --disabled-password --home /home/mitm mitm && chown mitm /app
 USER mitm
 
 COPY addons.py ./addons.py
