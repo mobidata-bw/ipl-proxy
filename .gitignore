@@ -4,3 +4,6 @@
 /venv
 /.env
 /.mitmproxy
+/.mypy_cache
+/.ruff_cache
+/.cache

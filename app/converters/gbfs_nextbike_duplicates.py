@@ -4,7 +4,7 @@ Copyright (c) 2023, binary butterfly GmbH
 All rights reserved.
 """
 
-from typing import List
+from typing import List, Union
 
 from app.base_converter import BaseConverter
 
@@ -12,8 +12,8 @@ from app.base_converter import BaseConverter
 class GbfsNextbikeDuplicatesConverter(BaseConverter):
     hostnames = ['gbfs.nextbike.net']
 
-    def convert(self, data: dict, path: str, **kwargs) -> dict:
-        if not path.startswith('/maps/gbfs/v2/') or not path.endswith('/vehicle_types.json'):
+    def convert(self, data: Union[dict, list], path: str) -> Union[dict, list]:
+        if not isinstance(data, dict) or not path.startswith('/maps/gbfs/v2/') or not path.endswith('/vehicle_types.json'):
             return data
 
         if not data.get('data', {}).get('vehicle_types'):

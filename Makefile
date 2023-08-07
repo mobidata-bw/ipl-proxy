@@ -6,6 +6,8 @@ DOCKER_COMPOSE = docker compose
 # Default target when running `make`
 all: docker-up
 
+PROXY_RUN = $(DOCKER_COMPOSE) run --rm proxy
+
 # Container management
 # --------------------
 
@@ -32,5 +34,16 @@ docker-build: .env
 
 # Start a shell (bash) in the quart docker container
 .PHONY: docker-shell
-docker-shell: config
-	$(QUART_RUN) bash
+docker-shell:
+	$(PROXY_RUN) bash
+
+
+.PHONY: lint-fix
+lint-fix:
+	$(PROXY_RUN) ruff --fix ./app
+	$(PROXY_RUN) black ./app
+
+.PHONY: lint-check
+lint-check:
+	$(PROXY_RUN) ruff ./app
+	$(PROXY_RUN) black -S --check --diff app
