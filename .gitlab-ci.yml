@@ -1,0 +1,24 @@
+lint:
+  image: registry.gitlab.com/pipeline-components/ruff:latest
+  before_script:
+    - mkdir reports
+  script:
+    - ruff ./app
+
+
+black:
+  image:
+    name: ${CI_REGISTRY}/common/base-images/flask:ubuntu-22.04
+  before_script:
+    - pip install -r requirements.txt
+  script:
+    - black -S --check --diff app
+
+
+mypy-check:
+  image:
+    name: ${CI_REGISTRY}/common/base-images/flask:ubuntu-22.04
+  before_script:
+    - pip install -r requirements.txt
+  script:
+    - mypy app

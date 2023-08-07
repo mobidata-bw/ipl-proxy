@@ -5,9 +5,7 @@ All rights reserved.
 """
 
 from abc import ABC, abstractmethod
-from typing import Union, List
-
-from mitmproxy.http import HTTPFlow
+from typing import List, Union
 
 
 class BaseConverter(ABC):
@@ -17,5 +15,5 @@ class BaseConverter(ABC):
         return []
 
     @abstractmethod
-    def convert(self, data: Union[dict, list], path: str, flow: HTTPFlow) -> Union[dict, list]:
+    def convert(self, data: Union[dict, list], path: str) -> Union[dict, list]:
         pass

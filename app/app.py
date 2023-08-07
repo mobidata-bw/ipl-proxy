@@ -25,9 +25,9 @@ class App:
 
         # the following code is a converter autoloader. It dynamically adds all converters in ./converters.
         package_dir = Path(__file__).resolve().parent.joinpath('converters')
-        for (_, module_name, _) in iter_modules([str(package_dir)]):
+        for _, module_name, _ in iter_modules([str(package_dir)]):
             # load all modules in converters
-            module = import_module(f"app.converters.{module_name}")
+            module = import_module(f'app.converters.{module_name}')
             # look for attributes
             for attribute_name in dir(module):
                 attribute = getattr(module, attribute_name)
@@ -42,12 +42,13 @@ class App:
                         self.json_converters[hostname].append(obj)
 
     def response(self, flow: HTTPFlow):
-
         # if there is no converter for the requested host, don't do anything
         if flow.request.host not in self.json_converters:
             return
 
         # try to load the response. If there is any error, return.
+        if not flow.response or not flow.response.text:
+            return
         try:
             json_data = json.loads(flow.response.text)
         except (JSONDecodeError, TypeError):
@@ -55,7 +56,7 @@ class App:
 
         # iterate all converters and apply them
         for json_converter in self.json_converters[flow.request.host]:
-            json_data = json_converter.convert(data=json_data, path=flow.request.path, flow=flow)
+            json_data = json_converter.convert(data=json_data, path=flow.request.path)
 
         # set the returning json content
         flow.response.text = json.dumps(json_data)
