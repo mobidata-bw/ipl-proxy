@@ -5,10 +5,11 @@ All rights reserved.
 """
 from typing import List
 
+
 def filter_duplicate_vehicle_types(data: dict) -> dict:
     if not data.get('data', {}).get('vehicle_types'):
         return data
-    
+
     known_ids: List[str] = []
     filtered_vehicle_types: List[dict] = []
 
@@ -21,6 +22,7 @@ def filter_duplicate_vehicle_types(data: dict) -> dict:
     data['data']['vehicle_types'] = filtered_vehicle_types
     return data
 
+
 def add_missing_max_range_meters(data: dict, max_range_meters: int) -> dict:
     if not data.get('data', {}).get('vehicle_types'):
         return data
@@ -32,3 +34,4 @@ def add_missing_max_range_meters(data: dict, max_range_meters: int) -> dict:
                 # TODO this should take vehicle_type_id into account
                 vehicle_type['max_range_meters'] = max_range_meters
                 # TODO log extension for this vehicle_type
+    return data
