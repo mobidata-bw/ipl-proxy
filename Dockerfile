@@ -1,3 +1,5 @@
+# syntax=docker/dockerfile:1
+
 FROM python:3.11-slim
 
 # Prevents Python from writing pyc files.
@@ -10,7 +12,10 @@ ENV PYTHONUNBUFFERED=1
 WORKDIR /app
 
 COPY requirements.txt .
-RUN pip install -r requirements.txt
+
+# Cache-mount /root/.cache/pip to speed up subsequent builds.
+RUN --mount=type=cache,target=/root/.cache/pip \
+	pip install -r requirements.txt
 
 COPY . .
 
