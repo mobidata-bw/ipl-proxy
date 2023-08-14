@@ -11,6 +11,10 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
 
+RUN apt-get update && apt-get install -y \
+	netcat-openbsd \
+	&& rm -rf /var/lib/apt/lists/*
+
 # Cache-mount /root/.cache/pip to speed up subsequent builds.
 # Bind-mount requirements.txt to avoid having to copy it.
 RUN --mount=type=cache,target=/root/.cache/pip \
@@ -20,4 +24,9 @@ RUN --mount=type=cache,target=/root/.cache/pip \
 COPY . .
 
 CMD ["mitmdump", "-s", "addons.py"]
+
+# When sending an HTTP request with `Host: localhost`, mitmproxy will respond with 502.
+# So we only check if there's a process listening on that port.
+HEALTHCHECK --start-period=5s --timeout=1s --interval=5s --retries=5 CMD ["nc", "-z", "localhost", "8080"]
+
 EXPOSE 8080
