@@ -11,10 +11,10 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
 
-COPY requirements.txt .
-
 # Cache-mount /root/.cache/pip to speed up subsequent builds.
+# Bind-mount requirements.txt to avoid having to copy it.
 RUN --mount=type=cache,target=/root/.cache/pip \
+	--mount=type=bind,source=requirements.txt,target=requirements.txt \
 	pip install -r requirements.txt
 
 COPY . .
