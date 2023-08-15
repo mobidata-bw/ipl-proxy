@@ -46,7 +46,7 @@ class App:
 
     def request(self, flow: HTTPFlow):
         if flow.request.host in self.config_helper.get('HTTP_TO_HTTPS_HOSTS', []):
-            flow.request.scheme = b'https'
+            flow.request.scheme = 'https'
             flow.request.port = 443
 
     def response(self, flow: HTTPFlow):
