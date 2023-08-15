@@ -41,8 +41,15 @@ You can also use the interactive mode by
 mitmproxy -s addons.py
 ```
 
+If you want to have access to a config, you have to create a config.yaml. You can use the template in 
+`config_dist_dev.yaml`:
 
-Using docker, you just have to use `make` to start the `mitmdump` service.
+```shell
+cp config_dist_dev.yaml config.yaml
+```
+
+Using docker, you just have to use `make` to start the `mitmdump` service. The `config.yaml` is created with default
+values automatically.
 
 The HTTP proxy will be available at `http://localhost:8080`.
 

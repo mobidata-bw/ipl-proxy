@@ -15,12 +15,15 @@ from typing import Dict, List
 from mitmproxy.http import HTTPFlow
 
 from app.base_converter import BaseConverter
+from app.config_helper import ConfigHelper
 
 
 class App:
     json_converters: Dict[str, List[BaseConverter]]
 
     def __init__(self):
+        self.config_helper = ConfigHelper()
+
         self.json_converters = {}
 
         # the following code is a converter autoloader. It dynamically adds all converters in ./converters.
@@ -40,6 +43,11 @@ class App:
                         if hostname not in self.json_converters:
                             self.json_converters[hostname] = []
                         self.json_converters[hostname].append(obj)
+
+    def request(self, flow: HTTPFlow):
+        if flow.request.host in self.config_helper.get('HTTP_TO_HTTPS_HOSTS', []):
+            flow.request.scheme = b'https'
+            flow.request.port = 443
 
     def response(self, flow: HTTPFlow):
         # if there is no converter for the requested host, don't do anything
