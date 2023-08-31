@@ -14,7 +14,7 @@ virtualenv venv
 # go into the virtual environment
 source venv/bin/activate
 # install all required packages
-pip install -r requirements.txt
+pip install -r requirements.txt -r requirements-dev.txt
 ```
 
 ### Docker
