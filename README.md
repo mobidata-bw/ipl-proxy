@@ -1,8 +1,12 @@
 # MobiData BW Modification Proxy
 
-This small project is able to convert data on the fly. This is sometimes necessary to fix invalid data.
+**An HTTP proxy that transforms request and response bodies on the fly.**
+
+This proxy service fixes invalid data, or abstracts away other data access hurdles (e.g. bespoke authentication schemes), **so that other services in the MobiData-BW *Integrationsplatform* (IPL) can consume the datasets as-is**.
 
 ## How to install
+
+*Note:* This project to is designed to be run as a part of the entire IPL platform, [as defined in the `ipl-orchestration` repo](https://github.com/mobidata-bw/ipl-orchestration). But you can also run it in a standalone fashion.
 
 ### Virtual Environment
 
