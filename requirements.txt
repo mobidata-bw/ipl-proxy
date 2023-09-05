@@ -1,7 +1,1 @@
 mitmproxy~=10.0.0
-pyyaml~=6.0.1
-ruff~=0.0.282
-black~=23.7.0
-mypy~=1.4.1
-mypy-gitlab-code-quality~=0.0.15
-types-pyyaml~=6.0.12.11
