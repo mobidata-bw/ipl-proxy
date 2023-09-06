@@ -45,7 +45,8 @@ You can also use the interactive mode by
 mitmproxy -s addons.py
 ```
 
-If you want to have access to a config, you have to create a config.yaml. You can use the template in 
+`ipl-proxy` can optionally use a config file. It must be called `config.yaml` and reside in the project root directory.
+Copy the template and modify it afterwards:
 `config_dist_dev.yaml`:
 
 ```shell
