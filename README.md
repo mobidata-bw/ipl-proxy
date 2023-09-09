@@ -47,7 +47,6 @@ mitmproxy -s addons.py
 
 `ipl-proxy` can optionally use a config file. It must be called `config.yaml` and reside in the project root directory.
 Copy the template and modify it afterwards:
-`config_dist_dev.yaml`:
 
 ```shell
 cp config_dist_dev.yaml config.yaml
