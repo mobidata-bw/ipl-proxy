@@ -11,24 +11,31 @@ PROXY_RUN = $(DOCKER_COMPOSE) run --rm proxy
 # Container management
 # --------------------
 
+.PHONY: config
+config: .env config.yaml
+
 # Create .env file to set the UID/GID for the docker containers to run as to the current user
 .env:
 	echo "DOCKER_LOCAL_USER=$(shell id -u):$(shell id -g)" >> .env
+
+# Create config file from config_dist_dev.yaml if it does not exist yet
+config.yaml:
+	cp config_dist_dev.yaml config.yaml
 
 .PHONY: docker-up
 docker-up: docker-build
 	$(DOCKER_COMPOSE) up
 
 .PHONY: docker-down
-docker-down: .env
+docker-down: config
 	$(DOCKER_COMPOSE) down --remove-orphans
 
 .PHONY: docker-purge
-docker-purge: .env
+docker-purge: config
 	$(DOCKER_COMPOSE) down --remove-orphans --volumes
 
 .PHONY: docker-build
-docker-build: .env
+docker-build: config
 	$(DOCKER_COMPOSE) build proxy
 
 

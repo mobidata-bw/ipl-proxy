@@ -45,8 +45,15 @@ You can also use the interactive mode by
 mitmproxy -s addons.py
 ```
 
+`ipl-proxy` can optionally use a config file. It must be called `config.yaml` and reside in the project root directory.
+Copy the template and modify it afterwards:
 
-Using docker, you just have to use `make` to start the `mitmdump` service.
+```shell
+cp config_dist_dev.yaml config.yaml
+```
+
+Using docker, you just have to use `make` to start the `mitmdump` service. The `config.yaml` is created with default
+values automatically.
 
 The HTTP proxy will be available at `http://localhost:8080`.
 
