@@ -10,7 +10,7 @@ from app.base_converter import BaseConverter
 
 
 class GbfsHttpsToHttpConverter(BaseConverter):
-    hostnames = ['gbfs.nextbike.net']
+    hostnames = ['gbfs.nextbike.net', 'apis.deutschebahn.com']
 
     def convert(self, data: Union[dict, list], path: str) -> Union[dict, list]:
         if not isinstance(data, dict) and not path.endswith('/gbfs.json'):
