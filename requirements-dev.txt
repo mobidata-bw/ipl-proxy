@@ -1,4 +1,4 @@
 ruff~=0.0.292
 black~=23.9.1
-mypy~=1.4.1
+mypy~=1.6.1
 types-pyyaml~=6.0.12.12
