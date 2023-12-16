@@ -1,6 +1,6 @@
 """
 MobiData BW Proxy
-Copyright (c) 2023, binary butterfly GmbH
+Copyright (c) 2023, systect Holger Bruch
 All rights reserved.
 """
 
@@ -10,7 +10,11 @@ from app.base_converter import BaseConverter
 
 
 class GbfsHttpsToHttpConverter(BaseConverter):
-    hostnames = ['gbfs.nextbike.net', 'apis.deutschebahn.com']
+    hostnames = [
+        'gbfs.nextbike.net',
+        'apis.deutschebahn.com',
+        'stables.donkey.bike',
+    ]
 
     def convert(self, data: Union[dict, list], path: str) -> Union[dict, list]:
         if not isinstance(data, dict) and not path.endswith('/gbfs.json'):
