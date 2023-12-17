@@ -6,7 +6,7 @@ All rights reserved.
 
 import logging
 from datetime import datetime
-from typing import List, Union
+from typing import Any
 
 from app.base_converter import BaseConverter
 
@@ -24,12 +24,13 @@ class DonkeyFreeBikeStatusConverter(BaseConverter):
 
     hostnames = ['stables.donkey.bike']
 
-    def _convert_str_to_double(self, bike, property):
+    @staticmethod
+    def _convert_str_to_float(bike: dict[str, Any], property: str) -> None:
         value = bike.get(property)
         if isinstance(value, str):
             bike[property] = float(value)
 
-    def convert(self, data: Union[dict, list], path: str) -> Union[dict, list]:
+    def convert(self, data: dict | list, path: str) -> dict | list:
         if not isinstance(data, dict) or not path.endswith('/free_bike_status.json'):
             return data
 
@@ -40,9 +41,9 @@ class DonkeyFreeBikeStatusConverter(BaseConverter):
                     bike['last_reported'] = int(datetime.fromisoformat(last_reported).timestamp())
                 except Exception:
                     logging.error(f'Failed to parse donkey free_bike_status bike last_reported {last_reported}')
-            self._convert_str_to_double(bike, 'lon')
-            self._convert_str_to_double(bike, 'lat')
-            self._convert_str_to_double(bike, 'current_fuel_percent')
+            self._convert_str_to_float(bike, 'lon')
+            self._convert_str_to_float(bike, 'lat')
+            self._convert_str_to_float(bike, 'current_fuel_percent')
             if 'hub_id' in bike:
                 bike['station_id'] = bike.pop('hub_id')
             if 'vehicle_type_id' not in bike:
