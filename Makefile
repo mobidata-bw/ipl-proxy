@@ -47,10 +47,13 @@ docker-shell:
 
 .PHONY: lint-fix
 lint-fix:
-	$(PROXY_RUN) ruff --fix ./app
-	$(PROXY_RUN) black ./app
+	ruff --fix ./app
+	black ./app
+	# mypy has no fix mode, we run it anyway to report (unfixable) errors
+	mypy ./app
 
 .PHONY: lint-check
 lint-check:
-	$(PROXY_RUN) ruff ./app
-	$(PROXY_RUN) black -S --check --diff app
+	ruff ./app
+	black -S --check --diff app
+	mypy ./app
