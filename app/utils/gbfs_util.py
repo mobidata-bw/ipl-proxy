@@ -5,7 +5,7 @@ All rights reserved.
 """
 import logging
 from collections import Counter
-from typing import Any, Dict, List, Optional
+from typing import Any, Callable, Dict, List, Optional
 
 
 def update_stations_availability_status(station_status: List[Dict], vehicles: List[Dict]) -> None:
@@ -46,7 +46,7 @@ def update_stations_availability_status(station_status: List[Dict], vehicles: Li
             station['vehicle_types_available'] = default_vehicle_types_available
 
 
-def _count_vehicle_types_at_station(vehicles, filter) -> Counter:
+def _count_vehicle_types_at_station(vehicles: list[dict[str, Any]], filter: Callable[[dict], bool]) -> Counter:
     """
     Count vehicle's per vehicle_type and station, which fulfill the filter critera.
     """
@@ -68,7 +68,8 @@ def _update_station_availability_status(vt_available: List[Dict[str, Any]], stat
     if 'num_bikes_available' in station_status:
         if num_bikes_available != station_status['num_bikes_available']:
             logging.warn(
-                f"Official num_bikes_available ({station_status['num_bikes_available']}) does not match count deduced from vehicle_types_available ({num_bikes_available}) at stationn {station_status['station_id']}"
+                f"Official num_bikes_available ({station_status['num_bikes_available']}) does not match count deduced "
+                + f" from vehicle_types_available ({num_bikes_available}) at stationn {station_status['station_id']}"
             )
     else:
         station_status['num_bikes_available'] = num_bikes_available
