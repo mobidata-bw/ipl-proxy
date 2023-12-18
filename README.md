@@ -39,6 +39,12 @@ With virtual environments, you can start `mitmproxy` with our converters like th
 mitmdump -s addons.py
 ```
 
+If you want to specify a different port, you can do so like this:
+
+```shell
+mitmdump -s addons.py -p 6666
+```
+
 You can also use the interactive mode by
 
 ```shell
@@ -56,6 +62,27 @@ Using docker, you just have to use `make` to start the `mitmdump` service. The `
 values automatically.
 
 The HTTP proxy will be available at `http://localhost:8080`.
+
+### Development
+
+When developing a new converter, for which requests received via http should be forwarded via https, be sure to add this domain in the `HTTP_TO_HTTPS_HOSTS` section of `config.yaml`.
+
+Mind also, that if a response of such a service contains links to the service, they probably need to be mapped form https to http again, so that follow up requests of a clinet use http again. For gbfs.json files, this is done via the `gbfs_https_to_http.py` converter. New domains which this converter should be applied for need to be added in this converter, also.
+
+#### Code Formatting
+Before committing/pushing, you should lint your code. Linting can be performed via
+
+```shell
+make lint-check
+```
+
+or, if fixable issues should be corrected automatically, via
+
+```shell
+make lint-fix
+```
+
+Note: these make targets require that the virtual environement is acitvated and at least the `requirements-dev.txt` dependencies are installed.
 
 
 ## Caveats
