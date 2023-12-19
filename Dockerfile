@@ -23,7 +23,16 @@ RUN --mount=type=cache,target=/root/.cache/pip \
 
 COPY . .
 
-CMD ["mitmdump", "-s", "addons.py"]
+ENV LOG_LEVEL=info
+
+CMD [\
+	"/bin/sh", "-u", "-c", \
+	# > Log verbosity.
+	# > Default: info
+	# > Choices: error, warn, info, alert, debug
+	# https://docs.mitmproxy.org/stable/concepts-options/#available-options
+	"mitmdump -s addons.py --set termlog_verbosity=$LOG_LEVEL" \
+]
 
 # When sending an HTTP request with `Host: localhost`, mitmproxy will respond with 502.
 # So we only check if there's a process listening on that port.
