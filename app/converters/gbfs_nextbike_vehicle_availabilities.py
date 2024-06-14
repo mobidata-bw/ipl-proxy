@@ -4,8 +4,6 @@ Copyright (c) 2023, binary butterfly GmbH
 All rights reserved.
 """
 
-from typing import Any
-
 from app.base_converter import BaseConverter
 from app.utils.gbfs_util import update_stations_availability_status
 

@@ -3,6 +3,7 @@ MobiData BW Proxy
 Copyright (c) 2023, systect Holger Bruch
 All rights reserved.
 """
+
 import logging
 from collections import Counter
 from typing import Any, Callable, Dict, List, Optional
