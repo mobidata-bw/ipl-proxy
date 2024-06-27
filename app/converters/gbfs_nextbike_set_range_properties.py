@@ -23,4 +23,3 @@ class GbfsNextbikeSetRangePropertiesConverter(BaseConverter):
             return data
 
         return data
-
