@@ -3,6 +3,8 @@
 The changelog lists relevant feature changes between each release. Search GitHub issues and pull requests for smaller issues.
 
 ## Upcoming release (under development)
+
+- add converter for `gbfs.nextbike.net` feed: set `max_range_meters` and `current_range_meters` for vehicles with `propulsion_type` != `human`.
 - add converter for `mds.bird.co` feed: remove `station_information`, `station_status` and `free_bike_status` feeds from gbfs.json if they are always empty.  
 
 ## 2024-06-14
