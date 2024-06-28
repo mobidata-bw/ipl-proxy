@@ -23,7 +23,7 @@ class GbfsNextbikeSetRangePropertiesConverter(BaseConverter):
             for vehicle_type in vehicle_types:
                 if 'propulsion_type' not in vehicle_type or vehicle_type['propulsion_type'] == 'human':
                     continue
-                if 'max_range_meters' not in vehicle_type or vehicle_type['max_range_meters'] == 0:
+                if 'max_range_meters' not in vehicle_type:
                     vehicle_type['max_range_meters'] = 60000
             system_id = self._get_system_id_from_path(path)
             self.vehicle_types_cache_per_system[system_id] = vehicle_types
@@ -42,9 +42,9 @@ class GbfsNextbikeSetRangePropertiesConverter(BaseConverter):
                     continue
                 vehicle_type_id = vehicle['vehicle_type_id']
                 for vehicle_type in vehicle_types:
-                    if 'vehicle_type_id' not in vehicle_type or vehicle_type['vehicle_type_id'] != vehicle_type_id:
+                    if vehicle_type.get('vehicle_type_id') != vehicle_type_id:
                         continue
-                    if 'current_range_meters' not in vehicle or vehicle['current_range_meters'] == 0:
+                    if 'current_range_meters' not in vehicle:
                         vehicle['current_range_meters'] = 1000
                     break
             return data
