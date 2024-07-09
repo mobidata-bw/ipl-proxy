@@ -31,8 +31,8 @@ class GbfsNextbikeSetRangePropertiesConverter(BaseConverter):
 
         if path.endswith('/free_bike_status.json'):
             system_id = self._get_system_id_from_path(path)
-            vehicles_types = self.vehicle_types_cache_per_system.get(system_id, [])
-            if not vehicles_types:
+            vehicle_types = self.vehicle_types_cache_per_system.get(system_id, [])
+            if not vehicle_types:
                 return data
             vehicles = data.get('data', {}).get('bikes', [])
             if not isinstance(vehicles, list):
