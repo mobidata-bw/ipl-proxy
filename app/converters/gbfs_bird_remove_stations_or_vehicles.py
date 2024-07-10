@@ -8,7 +8,7 @@ class GbfsBirdRemoveStationsOrVehiclesConverter(BaseConverter):
 
     @staticmethod
     def _get_system_id_from_path(path: str) -> str:
-        return path.split('/')[-3:-2][0]
+        return path.split('/')[-2]
 
     def convert(self, data: Union[dict, list], path: str) -> Union[dict, list]:
         if not path.endswith('/gbfs.json') or not isinstance(data, dict) or not isinstance(data.get('data'), dict):
