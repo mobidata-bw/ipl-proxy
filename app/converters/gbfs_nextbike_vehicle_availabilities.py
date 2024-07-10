@@ -59,7 +59,7 @@ class GbfsNextbikeVehicleAvailabilityConverter(BaseConverter):
             return data
 
         vehicles = self.free_vehicles_cache_per_system.get(system_id, [])
-        if not vehicles:  # _convert_free_vehicles_status has not yet been called for this system_id
+        if len(vehicles) == 0:  # _convert_free_vehicles_status has not yet been called for this system_id
             return data
 
         update_stations_availability_status(data['data']['stations'], vehicles)
