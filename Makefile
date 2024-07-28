@@ -48,12 +48,10 @@ docker-shell:
 .PHONY: lint-fix
 lint-fix:
 	ruff check --fix ./app
-	black ./app
 	# mypy has no fix mode, we run it anyway to report (unfixable) errors
 	mypy ./app
 
 .PHONY: lint-check
 lint-check:
 	ruff check ./app
-	black -S --check --diff app
 	mypy ./app
