@@ -1,2 +1,2 @@
-mitmproxy~=10.3.1
+mitmproxy~=10.4.2
 pyyaml~=6.0.1
