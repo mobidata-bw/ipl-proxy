@@ -14,11 +14,15 @@ class GbfsDonkeyKreuzlingenSetCurrentRangeMetersConverter(BaseConverter):
         if not isinstance(data, dict):
             return data
 
+        system_id = self._get_system_id_from_path(path)
+        if system_id != 'donkey_kreuzlingen':
+            return data
+
         if path.endswith('/free_bike_status.json'):
-            system_id = self._get_system_id_from_path(path)
-            if system_id != 'donkey_kreuzlingen':
+            fields = data.get('data', {})
+            if not isinstance(fields, dict):
                 return data
-            vehicles = data.get('data', {}).get('bikes', [])
+            vehicles = fields.get('bikes', [])
             if not isinstance(vehicles, list):
                 return data
             for vehicle in vehicles:
