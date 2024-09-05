@@ -40,7 +40,7 @@ jobs:
       # https://beta.ruff.rs/docs/usage/#github-action
       # uses: chartboost/ruff-action@v1
       run: |
-        ruff format --check ./app ./tests
+        ruff format --check
 
     - name: type-check using mypy
       run: |
