@@ -44,7 +44,7 @@ class GbfsNextbikeSetRangePropertiesConverter(BaseConverter):
                 for vehicle_type in vehicle_types:
                     if vehicle_type.get('vehicle_type_id') != vehicle_type_id:
                         continue
-                    if 'current_range_meters' not in vehicle:
+                    if 'max_range_meters' in vehicle_type and 'current_range_meters' not in vehicle:
                         vehicle['current_range_meters'] = 1000
                     break
             return data
