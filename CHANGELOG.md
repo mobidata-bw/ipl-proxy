@@ -2,6 +2,9 @@
 
 The changelog lists relevant feature changes between each release. Search GitHub issues and pull requests for smaller issues.
 
+[upcoming release]
+- fix converter for `gbfs.nextbike.net` feeds: set `current_range_meters` only for vehicles with `propulsion_type` != `human`.
+
 ## 2024-09-03
 - add converter for `stables.donkey.bike/api/public/gbfs/2/donkey_kreuzlingen` feed: override `current_range_meters` and remove `current_fuel_percent` for vehicles where these attributes are null. This is a workaround for https://github.com/DonkeyRepublic/donkey_gbfs/issues/8.
 
