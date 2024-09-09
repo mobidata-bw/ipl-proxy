@@ -3,6 +3,7 @@
 The changelog lists relevant feature changes between each release. Search GitHub issues and pull requests for smaller issues.
 
 [upcoming release]
+- add converter for `gbfs.nextbike.net` feeds: set `form_factor=other` if not defined.
 - fix converter for `gbfs.nextbike.net` feeds: set `current_range_meters` only for vehicles with `propulsion_type` != `human`.
 
 ## 2024-09-03
