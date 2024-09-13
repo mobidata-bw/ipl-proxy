@@ -19,7 +19,7 @@ class GbfsDbConnectRemoveCapacityConverter(BaseConverter):
                 return data
             for station in stations:
                 if 'capacity' in station:
-                    del station['capacity'] # remove default value 40
+                    del station['capacity']  # remove default value 40
             return data
 
         return data
