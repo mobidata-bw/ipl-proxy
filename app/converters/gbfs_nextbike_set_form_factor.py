@@ -20,6 +20,8 @@ class GbfsNextbikeSetFormFactorConverter(BaseConverter):
             for vehicle_type in vehicle_types:
                 if 'form_factor' not in vehicle_type:
                     vehicle_type['form_factor'] = 'other'
+                if 'propulsion_type' not in vehicle_type:
+                    vehicle_type['propulsion_type'] = 'human'
             return data
 
         return data
