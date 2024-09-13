@@ -10,7 +10,7 @@ class GbfsDbConnectRemoveCapacityConverter(BaseConverter):
         if not isinstance(data, dict):
             return data
 
-        if path.endswith('/station_information.json'):
+        if path.endswith('/station_information'):
             fields = data.get('data', {})
             if not isinstance(fields, dict):
                 return data
