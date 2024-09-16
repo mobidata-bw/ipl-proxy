@@ -3,6 +3,8 @@
 The changelog lists relevant feature changes between each release. Search GitHub issues and pull requests for smaller issues.
 
 [upcoming release]
+
+- add converter for `apis.deutschebahn.com` feeds: remove capacity attribute
 - change converter for `gbfs.nextbike.net` feeds: set `propulsion_type=human` if not defined
 
 ## 2024-09-10
