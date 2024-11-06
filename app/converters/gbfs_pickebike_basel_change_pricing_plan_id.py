@@ -20,10 +20,8 @@ class GbfsPickebikeBaselChangePricingPlanIdConverter(BaseConverter):
             if not isinstance(vehicles, list):
                 return data
             for vehicle in vehicles:
-                if 'vehicle_type_id' not in vehicle:
-                    continue
-                if 'pricing_plan_id' in vehicle and vehicle['pricing_plan_id'] == 'default_':
-                    vehicle['pricing_plan_id'] = 'default_' + vehicle['vehicle_type_id']
+                if vehicle.get('pricing_plan_id') == 'default_':
+                    vehicle['pricing_plan_id'] = 'default_' + vehicle.get('vehicle_type_id', '')
             return data
 
         return data
