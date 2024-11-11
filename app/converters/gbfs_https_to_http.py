@@ -22,7 +22,7 @@ class GbfsHttpsToHttpConverter(BaseConverter):
     def convert(self, data: Union[dict, list], path: str) -> Union[dict, list]:
         if not isinstance(data, dict):
             return data
-        if not (path.endswith('/gbfs.json') or '/gbfs?' in path):
+        if not (path.endswith('/gbfs.json') or path.endswith('/gbfs')):
             return data
 
         if not isinstance(data, dict) or 'data' not in data or not isinstance(data['data'], dict):
