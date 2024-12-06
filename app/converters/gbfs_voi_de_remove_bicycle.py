@@ -21,11 +21,12 @@ class GbfsVoiDeRemoveBicycleConverter(BaseConverter):
             vehicle_types = fields.get('vehicle_types', [])
             if not isinstance(vehicle_types, list):
                 return data
-            newdata = []
+            newlist = []
             for vehicle_type in vehicle_types:
                 if vehicle_type.get('vehicle_type_id') != 'voi_bike':
-                    newdata.append(vehicle_type)
-            return newdata
+                    newlist.append(vehicle_type)
+            fields['vehicle_types'] = newlist
+            return data
 
         if path.endswith('/station_status.json'):
             fields = data.get('data', {})
