@@ -2,6 +2,9 @@
 
 The changelog lists relevant feature changes between each release. Search GitHub issues and pull requests for smaller issues.
 
+## [unreleased]
+- add converter for api.voiapp.io/gbfs/v2 feed: remove all voi_bike entries
+
 ## 2024-11-12
 - add converter for `gbfs.prod.sharedmobility.ch/v2/gbfs/pickebike_basel` feed: set valid pricing_plan_id
 
