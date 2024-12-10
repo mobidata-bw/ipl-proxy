@@ -2,7 +2,7 @@
 
 The changelog lists relevant feature changes between each release. Search GitHub issues and pull requests for smaller issues.
 
-## [unreleased]
+## 2024-12-10
 - add converter for api.voiapp.io/gbfs/v2 feed: remove all voi_bike entries
 
 ## 2024-11-12
