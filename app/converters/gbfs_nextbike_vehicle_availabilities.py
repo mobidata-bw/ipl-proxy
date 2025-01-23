@@ -32,7 +32,7 @@ class GbfsNextbikeVehicleAvailabilityConverter(BaseConverter):
         if (
             not isinstance(data, dict)
             or not path.startswith('/maps/gbfs/v2/')
-            or not (path.endswith('/station_status.json') or path.endswith('/free_bike_status.json'))
+            or not (path.endswith(('/station_status.json', '/free_bike_status.json')))
         ):
             return data
 
