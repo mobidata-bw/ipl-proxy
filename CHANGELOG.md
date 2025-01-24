@@ -2,6 +2,9 @@
 
 The changelog lists relevant feature changes between each release. Search GitHub issues and pull requests for smaller issues.
 
+## 2025-01-24
+- replace converter for `gbfs.prod.sharedmobility.ch/v2/gbfs/mobility` feed: clear invalid vehicle_types_available entries instead of removing them
+
 ## 2025-01-20
 - add converter for `gbfs.prod.sharedmobility.ch/v2/gbfs/mobility` feed: remove invalid vehicle_types_available entries
 
