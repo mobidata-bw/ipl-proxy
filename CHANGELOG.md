@@ -2,6 +2,10 @@
 
 The changelog lists relevant feature changes between each release. Search GitHub issues and pull requests for smaller issues.
 
+
+## 2025-01-29
+- add converter for `gbfs.api.ridedott.com` feeds: adjust station attributes
+
 ## 2025-01-24
 - replace converter for `gbfs.prod.sharedmobility.ch/v2/gbfs/mobility` feed: clear invalid vehicle_types_available entries instead of removing them
 
