@@ -24,7 +24,6 @@ class GbfsDottAdjustStationAttributesConverter(BaseConverter):
             return data
 
         # set station.is_installed and station.is_renting to true because parking space is available
-        # remove station.num_bikes_available because it is always 0
         if path.endswith('/station_status.json'):
             fields = data.get('data', {})
             if not isinstance(fields, dict):
@@ -37,8 +36,6 @@ class GbfsDottAdjustStationAttributesConverter(BaseConverter):
                     station['is_installed'] = True
                 if 'is_renting' in station:
                     station['is_renting'] = True
-                if 'num_bikes_available' in station:
-                    del station['num_bikes_available']
             return data
 
         return data
