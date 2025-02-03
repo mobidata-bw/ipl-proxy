@@ -3,7 +3,7 @@ from typing import List, Union
 from app.base_converter import BaseConverter
 
 
-class GbfsMobilityChRemoveVehicleTypesAvailableConverter(BaseConverter):
+class GbfsMobilityChClearVehicleTypesAvailableConverter(BaseConverter):
     hostnames = ['gbfs.prod.sharedmobility.ch']
 
     def convert(self, data: Union[dict, list], path: str) -> Union[dict, list]:
@@ -12,7 +12,7 @@ class GbfsMobilityChRemoveVehicleTypesAvailableConverter(BaseConverter):
         if not path.startswith('/v2/gbfs/mobility'):
             return data
 
-        # remove invalid station entry: "vehicle_types_available": [ {"vehicle_type_id": "notAvailable", "count": 0} ]
+        # replace "vehicle_types_available": [ {"vehicle_type_id": "notAvailable", "count": 0} ] with "vehicle_types_available": []
         if '/station_status' in path:
             fields = data.get('data', {})
             if not isinstance(fields, dict):
@@ -26,7 +26,7 @@ class GbfsMobilityChRemoveVehicleTypesAvailableConverter(BaseConverter):
                     continue
                 for vehicle_type_available in vehicle_types_available:
                     if vehicle_type_available.get('vehicle_type_id') == 'notAvailable':
-                        del station['vehicle_types_available']
+                        station['vehicle_types_available'] = []
                         break
             return data
 
