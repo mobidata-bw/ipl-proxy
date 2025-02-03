@@ -20,6 +20,7 @@ select = [
 ignore = [
     "B008", # do not perform function calls in argument defaults
     "C901", # too complex
+    "ISC001", # single-line-implicit-string-concatenation - conflicts with formatter
 ]
 
 fixable = ["A", "B", "C", "D", "E", "F", "G", "I", "N", "Q", "S", "T", "W", "ANN", "ARG", "BLE", "COM", "DJ", "DTZ", "EM", "ERA", "EXE", "FBT", "ICN", "INP", "ISC", "NPY", "PD", "PGH", "PIE", "PL", "PT", "PTH", "PYI", "RET", "RSE", "RUF", "SIM", "SLF", "TCH", "TID", "TRY", "UP", "YTT"]
