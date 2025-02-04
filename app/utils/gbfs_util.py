@@ -8,6 +8,8 @@ import logging
 from collections import Counter
 from typing import Any, Callable, Dict, List, Optional
 
+logger = logging.getLogger('utils.gbfs_utils')
+
 
 def update_stations_availability_status(station_status: List[Dict], vehicles: List[Dict]) -> None:
     """
@@ -68,9 +70,9 @@ def _update_station_availability_status(vt_available: List[Dict[str, Any]], stat
     num_bikes_available = sum([vt['count'] for vt in vt_available])
     if 'num_bikes_available' in station_status:
         if num_bikes_available != station_status['num_bikes_available']:
-            logging.warn(
-                f"Official num_bikes_available ({station_status['num_bikes_available']}) does not match count deduced "
-                + f" from vehicle_types_available ({num_bikes_available}) at stationn {station_status['station_id']}"
+            logger.warn(
+                f'Official num_bikes_available ({station_status["num_bikes_available"]}) does not match count deduced '
+                f'from vehicle_types_available ({num_bikes_available}) at stationn {station_status["station_id"]}'
             )
     else:
         station_status['num_bikes_available'] = num_bikes_available

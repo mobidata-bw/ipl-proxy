@@ -10,6 +10,8 @@ from typing import Any
 
 from app.base_converter import BaseConverter
 
+logger = logging.getLogger('converters.DonkeyFreeBikeStatusConverter')
+
 
 class DonkeyFreeBikeStatusConverter(BaseConverter):
     """
@@ -40,7 +42,7 @@ class DonkeyFreeBikeStatusConverter(BaseConverter):
                 try:
                     bike['last_reported'] = int(datetime.fromisoformat(last_reported).timestamp())
                 except Exception:
-                    logging.error(f'Failed to parse donkey free_bike_status bike last_reported {last_reported}')
+                    logger.error(f'Failed to parse donkey free_bike_status bike last_reported {last_reported}')
             self._convert_str_to_float(bike, 'lon')
             self._convert_str_to_float(bike, 'lat')
             self._convert_str_to_float(bike, 'current_fuel_percent')

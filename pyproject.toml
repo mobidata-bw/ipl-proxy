@@ -1,32 +1,31 @@
-[tool.black]
-line-length = 140
-skip-string-normalization = 1
-
-[tool.ruff]
-lint.select = [
+[tool.ruff.lint]
+select = [
+    "F", # pyflakes
     "E", # pycodestyle errors
     "W", # pycodestyle warnings
-    "F", # pyflakes
-    "Q", # pydocstyle
-    "T", # mypy
-    "R", # pylint
-    "S", # flake8
     "I", # isort
-    "C", # flake8-comprehensions
-    "B", # flake8-bugbear
+    "S", # flake8-bandit
+    "ASYNC", # flake8-async
+    "DTZ", # flake8-datetimez
+    "ISC", # flake8-implicit-str-concat
+    "LOG", # flake8-logging
+    "INP", # flake8-no-pep420 (missing __init__.py)
+    "PIE", # flake8-pie
+    "T20", # flake8-print
+    "Q", # flake8-quotes
+    "TID", # flake8-tidy-imports
+    "FLY", # flynt (use f-string instead of static join)
 ]
 
-lint.ignore = [
-    "E501", # line too long, handled by black
+ignore = [
     "B008", # do not perform function calls in argument defaults
     "C901", # too complex
-    "F401", # imported but unused
-    "S101", # use of assert detected
+    "ISC001", # single-line-implicit-string-concatenation - conflicts with formatter
 ]
 
-lint.fixable = ["A", "B", "C", "D", "E", "F", "G", "I", "N", "Q", "S", "T", "W", "ANN", "ARG", "BLE", "COM", "DJ", "DTZ", "EM", "ERA", "EXE", "FBT", "ICN", "INP", "ISC", "NPY", "PD", "PGH", "PIE", "PL", "PT", "PTH", "PYI", "RET", "RSE", "RUF", "SIM", "SLF", "TCH", "TID", "TRY", "UP", "YTT"]
+fixable = ["A", "B", "C", "D", "E", "F", "G", "I", "N", "Q", "S", "T", "W", "ANN", "ARG", "BLE", "COM", "DJ", "DTZ", "EM", "ERA", "EXE", "FBT", "ICN", "INP", "ISC", "NPY", "PD", "PGH", "PIE", "PL", "PT", "PTH", "PYI", "RET", "RSE", "RUF", "SIM", "SLF", "TCH", "TID", "TRY", "UP", "YTT"]
 
-lint.exclude = [
+exclude = [
     ".bzr",
     ".direnv",
     ".eggs",
@@ -49,12 +48,31 @@ lint.exclude = [
     "venv",
 ]
 
-line-length = 140
+# Enable preview rules since a lot of basic pycodestyle rules are in preview mode for some reason
+preview = true
 
 [tool.ruff.lint.per-file-ignores]
-"__init__.py" = ["F401"]
+# Ignore unused and unsorted imports in init modules
+"__init__.py" = ["F401", "I001"]
+
+# Rule exceptions for unit/integration tests
+"tests/*" = [
+    # Allow assert
+    "S101",
+    # Ignore unsafe practices like hardcoded passwords
+    "S101", "S105", "S106",
+    # Don't require __init__.py files
+    "INP",
+]
+
+[tool.ruff]
+line-length = 140
 
 [tool.ruff.lint.flake8-quotes]
 inline-quotes = "single"
-multiline-quotes = "single"
+multiline-quotes = "double"
 docstring-quotes = "double"
+
+[tool.ruff.format]
+quote-style = "single"
+
