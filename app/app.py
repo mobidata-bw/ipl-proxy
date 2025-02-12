@@ -17,6 +17,7 @@ from mitmproxy.http import HTTPFlow
 from app.base_converter import BaseConverter
 from app.config_helper import ConfigHelper
 
+logger = logging.getLogger('converters.requests')
 
 class App:
     json_converters: Dict[str, List[BaseConverter]]
@@ -50,6 +51,9 @@ class App:
             flow.request.port = 443
 
     def response(self, flow: HTTPFlow):
+        # Log requests
+        logger.info(f'GET {flow.request.url}: HTTP {flow.response.status_code}')
+
         # if there is no converter for the requested host, don't do anything
         if flow.request.host not in self.json_converters:
             return
