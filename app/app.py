@@ -54,7 +54,7 @@ class App:
 
     def response(self, flow: HTTPFlow):
         # Log requests
-        logger.info(f'GET {flow.request.url}: HTTP {flow.response.status_code}')
+        logger.info(f'GET {flow.request.url}: HTTP {"-" if flow.response is None else flow.response.status_code}')
 
         # if there is no converter for the requested host, don't do anything
         if flow.request.host not in self.json_converters:
