@@ -5,6 +5,7 @@ All rights reserved.
 """
 
 import json
+import logging
 from importlib import import_module
 from inspect import isclass
 from json import JSONDecodeError
@@ -16,6 +17,8 @@ from mitmproxy.http import HTTPFlow
 
 from app.base_converter import BaseConverter
 from app.config_helper import ConfigHelper
+
+logger = logging.getLogger('converters.requests')
 
 
 class App:
@@ -50,6 +53,9 @@ class App:
             flow.request.port = 443
 
     def response(self, flow: HTTPFlow):
+        # Log requests
+        logger.info(f'{flow.request.method} {flow.request.url}: HTTP {"-" if flow.response is None else flow.response.status_code}')
+
         # if there is no converter for the requested host, don't do anything
         if flow.request.host not in self.json_converters:
             return

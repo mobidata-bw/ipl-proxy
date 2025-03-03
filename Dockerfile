@@ -30,8 +30,12 @@ CMD [\
 	# > Log verbosity.
 	# > Default: info
 	# > Choices: error, warn, info, alert, debug
+	# > Flow Detail
+	# > Default: 1
+	# > Choices: 0, 1, 2, 3, 4
+	# > Set to 0, because request logging is done by addons.py
 	# https://docs.mitmproxy.org/stable/concepts-options/#available-options
-	"mitmdump -s addons.py --set termlog_verbosity=$LOG_LEVEL" \
+	"mitmdump -s addons.py --set termlog_verbosity=$LOG_LEVEL --set flow_detail=0" \
 ]
 
 # When sending an HTTP request with `Host: localhost`, mitmproxy will respond with 502.
