@@ -2,6 +2,9 @@
 
 The changelog lists relevant feature changes between each release. Search GitHub issues and pull requests for smaller issues.
 
+## 2025-03-10:
+- generalize lime-remove-stations converter for `data.lime.bike` and `gbfs.prod.sharedmobility.ch`
+
 ## 2025-02-03:
 - chore(deps): bump mitmproxy to version 11.0.1
 

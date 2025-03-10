@@ -1,32 +1,32 @@
-"""
-MobiData BW Proxy
-Copyright (c) 2023, binary butterfly GmbH
-All rights reserved.
-"""
-
 from typing import Union
 
 from app.base_converter import BaseConverter
 
 
 class GbfsLimeRemoveStationsConverter(BaseConverter):
-    hostnames = ['data.lime.bike']
+    hostnames = ['data.lime.bike', 'gbfs.prod.sharedmobility.ch']
 
     def convert(self, data: Union[dict, list], path: str) -> Union[dict, list]:
-        if not path.endswith('/gbfs.json') or not isinstance(data, dict) or not isinstance(data.get('data'), dict):
+        if not isinstance(data, dict):
+            return data
+        if not path.startswith(('/api/partners/v2/gbfs/', '/v2/gbfs/lime_')):
             return data
 
-        for language in data['data']:
-            new_feeds = []
-            if not isinstance(data['data'][language].get('feeds'), list):
-                continue
-
-            for feed in data['data'][language]['feeds']:
-                if not isinstance(feed, dict) or feed.get('name') in ['station_information', 'station_status']:
+        if path.endswith('/gbfs.json') or '/gbfs?' in path:
+            fields = data.get('data')
+            if not isinstance(fields, dict):
+                return data
+            for language in fields:
+                feeds = fields[language].get('feeds')
+                if not isinstance(feeds, list):
                     continue
-
-                new_feeds.append(feed)
-
-            data['data'][language]['feeds'] = new_feeds
+                new_feeds = []
+                for feed in feeds:
+                    if not isinstance(feed, dict):
+                        continue
+                    if feed.get('name') not in ['station_information', 'station_status']:
+                        new_feeds.append(feed)
+                fields[language]['feeds'] = new_feeds
+            return data
 
         return data
