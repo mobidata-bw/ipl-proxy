@@ -8,3 +8,29 @@ HTTP_TO_HTTPS_HOSTS:
   - gbfs.prod.sharedmobility.ch
   - api.voiapp.io
   - gbfs.api.ridedott.com
+
+# This logging config sets up stdout and stderr output with OpenTelemetry format
+LOGGING:
+  version: 1
+  formatters:
+    open_telemetry:
+      (): app.utils.logging.ContextOpenTelemetryFormatter
+      prefix: proxy
+      service_name: IPL Proxy
+  handlers:
+    console_stdout:
+      class: logging.StreamHandler
+      level: DEBUG
+      formatter: open_telemetry
+      stream: ext://sys.stdout
+    console_stderr:
+      class: logging.StreamHandler
+      level: ERROR
+      formatter: open_telemetry
+      stream: ext://sys.stderr
+  loggers:
+    app:
+      level: DEBUG
+      handlers:
+        - console_stdout
+        - console_stderr
