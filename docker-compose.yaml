@@ -14,6 +14,6 @@ services:
       - .:/app
     environment:
       HOME: /app
-    command: mitmdump -s addons.py
+    command: mitmdump -s addons.py --set termlog_verbosity=error --set flow_detail=0
     restart: on-failure
     user: *local-user
