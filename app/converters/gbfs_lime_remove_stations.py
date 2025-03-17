@@ -12,7 +12,7 @@ class GbfsLimeRemoveStationsConverter(BaseConverter):
         if not path.startswith(('/api/partners/v2/gbfs/', '/v2/gbfs/lime_')):
             return data
 
-        if path.endswith('/gbfs.json') or '/gbfs?' in path:
+        if path.endswith(('/gbfs.json', '/gbfs')):
             fields = data.get('data')
             if not isinstance(fields, dict):
                 return data
