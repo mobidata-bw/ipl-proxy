@@ -72,7 +72,7 @@ def _update_station_availability_status(vt_available: List[Dict[str, Any]], stat
         if num_bikes_available != station_status['num_bikes_available']:
             logger.warn(
                 f'Official num_bikes_available ({station_status["num_bikes_available"]}) does not match count deduced '
-                f'from vehicle_types_available ({num_bikes_available}) at stationn {station_status["station_id"]}'
+                f'from vehicle_types_available ({num_bikes_available}) at station {station_status["station_id"]}'
             )
     else:
         station_status['num_bikes_available'] = num_bikes_available
