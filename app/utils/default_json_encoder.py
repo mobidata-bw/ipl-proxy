@@ -1,6 +1,6 @@
 """
 MobiData BW Proxy
-Copyright (c) 2023, binary butterfly GmbH
+Copyright (c) 2025, binary butterfly GmbH
 
 Licensed under the EUPL, Version 1.2 or – as soon they will be approved by
 the European Commission - subsequent versions of the EUPL (the "Licence");
@@ -16,16 +16,25 @@ See the Licence for the specific language governing permissions and
 limitations under the Licence.
 """
 
-from abc import ABC, abstractmethod
-from typing import List, Union
+import json
+from datetime import date, datetime
+from decimal import Decimal
+from enum import Enum
 
 
-class BaseConverter(ABC):
-    @property
-    @abstractmethod
-    def hostnames(self) -> List[str]:
-        return []
+class DefaultJSONEncoder(json.JSONEncoder):
+    """
+    Custom JSON encoder for this app.
+    """
 
-    @abstractmethod
-    def convert(self, data: Union[dict, list], path: str) -> Union[dict, list]:
-        pass
+    def default(self, obj):
+        if isinstance(obj, datetime):
+            return obj.strftime('%Y-%m-%dT%H:%M:%SZ')
+        if isinstance(obj, date):
+            return obj.isoformat()
+        if isinstance(obj, Decimal):
+            return str(obj)
+        if isinstance(obj, Enum):
+            return obj.value
+
+        return obj.__dict__

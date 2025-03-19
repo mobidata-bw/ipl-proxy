@@ -1,6 +1,6 @@
 """
 MobiData BW Proxy
-Copyright (c) 2023, binary butterfly GmbH
+Copyright (c) 2025, binary butterfly GmbH
 
 Licensed under the EUPL, Version 1.2 or – as soon they will be approved by
 the European Commission - subsequent versions of the EUPL (the "Licence");
@@ -16,16 +16,20 @@ See the Licence for the specific language governing permissions and
 limitations under the Licence.
 """
 
-from abc import ABC, abstractmethod
-from typing import List, Union
+from typing import Any
+
+from app.utils.context_helper import context_helper
 
 
-class BaseConverter(ABC):
-    @property
-    @abstractmethod
-    def hostnames(self) -> List[str]:
-        return []
+class ContextAttributesMixin:
+    @staticmethod
+    def add_additional_attributes(record_attributes: dict[str, Any]):
+        record_attributes.update(context_helper.get_current_attributes())
 
-    @abstractmethod
-    def convert(self, data: Union[dict, list], path: str) -> Union[dict, list]:
-        pass
+    @staticmethod
+    def get_trace_id() -> str:
+        return context_helper.get_current_trace_id()
+
+    @staticmethod
+    def get_span_id() -> str:
+        return context_helper.get_current_span_id()
