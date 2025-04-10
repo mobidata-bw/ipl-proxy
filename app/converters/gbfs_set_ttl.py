@@ -2,11 +2,12 @@ from typing import Union
 
 from app.base_converter import BaseConverter
 
+SECONDS_PER_HOUR = 60 * 60
+
 
 class GbfsSetTtlConverter(BaseConverter):
     hostnames = [
         'gbfs.nextbike.net',
-        'apis.deutschebahn.com',
         'stables.donkey.bike',
         'data.lime.bike',
         'mds.bird.co',
@@ -21,7 +22,7 @@ class GbfsSetTtlConverter(BaseConverter):
 
         if not path.endswith(('/station_status', '/station_status.json', '/free_bike_status', '/free_bike_status.json')):
             if 'ttl' not in data or data['ttl'] == 0:
-                data['ttl'] = 3600  # seconds per hour
+                data['ttl'] = SECONDS_PER_HOUR
             return data
 
         return data
