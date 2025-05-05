@@ -14,6 +14,7 @@ class GbfsSetReturnConstraintConverter(BaseConverter):
         'api.voiapp.io',
         'gbfs.api.ridedott.com',
         'zeus.city',
+        'yoio.rideatom.com',
     ]
 
     # ensure that return_constraint is always set

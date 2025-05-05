@@ -20,6 +20,7 @@ class GbfsHttpsToHttpConverter(BaseConverter):
         'api.voiapp.io',
         'gbfs.api.ridedott.com',
         'zeus.city',
+        'yoio.rideatom.com',
     ]
 
     def convert(self, data: Union[dict, list], path: str) -> Union[dict, list]:
