@@ -8,3 +8,4 @@ HTTP_TO_HTTPS_HOSTS:
   - gbfs.prod.sharedmobility.ch
   - api.voiapp.io
   - gbfs.api.ridedott.com
+  - zeus.city

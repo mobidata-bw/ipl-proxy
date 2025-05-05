@@ -13,6 +13,7 @@ class GbfsSetReturnConstraintConverter(BaseConverter):
         'gbfs.prod.sharedmobility.ch',
         'api.voiapp.io',
         'gbfs.api.ridedott.com',
+        'zeus.city',
     ]
 
     # ensure that return_constraint is always set
@@ -31,10 +32,14 @@ class GbfsSetReturnConstraintConverter(BaseConverter):
             for vehicle_type in vehicle_types:
                 if 'return_constraint' in vehicle_type:
                     continue
-                if path.startswith('/db-api-marketplace/apis/shared-mobility-gbfs/v2/de/RegioRadStuttgart'):
-                    vehicle_type['return_constraint'] = 'any_station'
-                if path.startswith('/maps/gbfs/v2/nextbike_df'):
-                    vehicle_type['return_constraint'] = 'any_station'
+                if vehicle_type.get('form_factor', '') == 'bicycle':
+                    vehicle_type['return_constraint'] = 'any_station'  # valid for most providers
+                if vehicle_type.get('form_factor', '') == 'scooter':
+                    vehicle_type['return_constraint'] = 'free_floating'  # valid for most providers
+                if path.startswith('/maps/gbfs/v2/nextbike_fg'):
+                    vehicle_type['return_constraint'] = 'hybrid'
+                if path.startswith('/public/v2/'):  # dott feed
+                    vehicle_type['return_constraint'] = 'hybrid'
             return data
 
         return data

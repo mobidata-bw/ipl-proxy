@@ -2,7 +2,7 @@
 
 The changelog lists relevant feature changes between each release. Search GitHub issues and pull requests for smaller issues.
 
-## 2025-05-02:
+## 2025-05-05:
 - add converter for all feeds: set return_constraint if not defined
 
 ## 2025-04-09:
