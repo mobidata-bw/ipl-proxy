@@ -33,8 +33,6 @@ class GbfsLimeRemoveMarketsAdjustSystemConverter(BaseConverter):
             fields = data.get('data')
             if not isinstance(fields, dict):
                 return data
-            fields['system_id'] = 'lime_stuttgart'
-            fields['name'] = 'Lime Stuttgart'
             fields['operator'] = 'Lime'
             fields['timezone'] = 'Europe/Berlin'
             fields['license_url'] = 'https://www.li.me/gbfs-terms'
