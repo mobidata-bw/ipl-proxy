@@ -29,7 +29,7 @@ class GbfsLimeRemoveMarketsAdjustSystemConverter(BaseConverter):
                 fields[language]['feeds'] = new_feeds
             return data
 
-        if path.endswith('/system_information.json'):
+        if path.endswith('/system_information'):
             fields = data.get('data')
             if not isinstance(fields, dict):
                 return data
