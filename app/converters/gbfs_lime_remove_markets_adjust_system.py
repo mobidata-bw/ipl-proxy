@@ -12,7 +12,7 @@ class GbfsLimeRemoveMarketsAdjustSystemConverter(BaseConverter):
         if not path.startswith('/api/partners/v2/gbfs_transit/'):
             return data
 
-        if path.endswith('/gbfs.json'):
+        if path.endswith('/gbfs'):
             fields = data.get('data')
             if not isinstance(fields, dict):
                 return data
