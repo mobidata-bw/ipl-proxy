@@ -4,6 +4,7 @@ The changelog lists relevant feature changes between each release. Search GitHub
 
 ## 2025-06-25:
 - add converter for bolt feeds: remove all bicycle entries
+  - note: if future bolt feeds contain bicycles, the bicycle entries must be added again
 
 ## 2025-05-16:
 - add converter for protected lime feed: remove `markets` feed and set `rentals_apps`
