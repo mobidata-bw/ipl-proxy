@@ -16,6 +16,7 @@ class GbfsHttpsToHttpConverter(BaseConverter):
         'stables.donkey.bike',
         'data.lime.bike',
         'mds.bird.co',
+        'mds.bolt.eu',
         'gbfs.prod.sharedmobility.ch',
         'api.voiapp.io',
         'gbfs.api.ridedott.com',
