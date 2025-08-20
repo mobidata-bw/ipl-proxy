@@ -15,6 +15,7 @@ class GbfsSetReturnConstraintConverter(BaseConverter):
         'gbfs.api.ridedott.com',
         'zeus.city',
         'yoio.rideatom.com',
+        'www.share-birrer.ch',
     ]
 
     # ensure that return_constraint is always set
