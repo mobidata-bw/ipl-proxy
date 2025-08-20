@@ -28,6 +28,8 @@ class GbfsShareBirrerAdjustBicycleConverter(BaseConverter):
                     vehicle_type['form_factor'] = 'bicycle'
                     vehicle_type['propulsion_type'] = 'electric'
                     vehicle_type['max_range_meters'] = BICYCLE_ELECTRIC_MAX_RANGE_METERS
+                if vehicle_type.get('propulsion_type') == 'hydrogen':
+                    vehicle_type['propulsion_type'] = 'electric'  # hydrogen_fuel_cell is not available in 2.2
             return data
 
         return data
