@@ -15,6 +15,7 @@ class GbfsSetTtlConverter(BaseConverter):
         'api.voiapp.io',
         'gbfs.api.ridedott.com',
         'www.share-birrer.ch',
+        'auto-birrer.ch',
     ]
 
     def convert(self, data: Union[dict, list], path: str) -> Union[dict, list]:

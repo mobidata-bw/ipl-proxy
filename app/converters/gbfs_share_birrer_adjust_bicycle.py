@@ -10,7 +10,7 @@ class GbfsShareBirrerAdjustBicycleConverter(BaseConverter):
     share_birrer_ch uses invalid form_factor 'bike'
     """
 
-    hostnames = ['www.share-birrer.ch']
+    hostnames = ['www.share-birrer.ch', 'auto-birrer.ch']
 
     def convert(self, data: Union[dict, list], path: str) -> Union[dict, list]:
         if not isinstance(data, dict):
