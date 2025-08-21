@@ -28,7 +28,7 @@ class GbfsShareBirrerAdjustBicycleConverter(BaseConverter):
                     vehicle_type['form_factor'] = 'bicycle'
                     vehicle_type['propulsion_type'] = 'electric'
                     vehicle_type['max_range_meters'] = BICYCLE_ELECTRIC_MAX_RANGE_METERS
-                    vehicle_type['return_constraint'] = 'roundtrip_station'  # there is only one bicycle station
+                    vehicle_type['return_constraint'] = 'any_station'  # currently, there is only one station for bicycles
                 if vehicle_type.get('propulsion_type') == 'hydrogen':
                     vehicle_type['propulsion_type'] = 'electric'  # hydrogen_fuel_cell is not available in 2.2
             return data
