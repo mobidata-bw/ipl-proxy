@@ -2,6 +2,9 @@
 
 The changelog lists relevant feature changes between each release. Search GitHub issues and pull requests for smaller issues.
 
+## 2025-08-20
+- add converter for `share_birrer_ch` feed: correct form_factor and propulsion_type
+
 ## 2025-06-25:
 - add converter for bolt feeds: remove all bicycle entries
   - note: if future bolt feeds contain bicycles, the bicycle entries must be added again

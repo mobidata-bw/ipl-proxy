@@ -22,6 +22,8 @@ class GbfsHttpsToHttpConverter(BaseConverter):
         'gbfs.api.ridedott.com',
         'zeus.city',
         'yoio.rideatom.com',
+        'www.share-birrer.ch',
+        'auto-birrer.ch',
     ]
 
     def convert(self, data: Union[dict, list], path: str) -> Union[dict, list]:
