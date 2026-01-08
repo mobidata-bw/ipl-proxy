@@ -2,6 +2,10 @@
 
 The changelog lists relevant feature changes between each release. Search GitHub issues and pull requests for smaller issues.
 
+## [Unrelease]
+- add support for GBFSv3
+- for yoio, fix timestamp isoformat (truncate microseconds and set UTC timezone)
+
 ## 2025-08-20
 - add converter for `share_birrer_ch` feed: correct form_factor and propulsion_type
 
