@@ -49,7 +49,7 @@ class GbfsNextbikeVehicleAvailabilityConverter(BaseConverter):
 
     def _convert_free_vehicle_status(self, system_id: str, data: dict, path: str) -> dict:
         # cache vehicles per feed
-        vehicles = data.get('data', {}).get('bikes', [])
+        vehicles = data.get('data', {}).get('bikes', data.get('vehicles', []))
         if isinstance(vehicles, list):
             self.free_vehicles_cache_per_system[system_id] = vehicles
         return data

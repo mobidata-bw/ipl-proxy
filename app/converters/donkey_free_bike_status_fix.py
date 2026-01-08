@@ -33,10 +33,10 @@ class DonkeyFreeBikeStatusConverter(BaseConverter):
             bike[property] = float(value)
 
     def convert(self, data: dict | list, path: str) -> dict | list:
-        if not isinstance(data, dict) or not path.endswith('/free_bike_status.json'):
+        if not isinstance(data, dict) or not path.endswith(('/free_bike_status.json', '/vehicle_status.json')):
             return data
 
-        for bike in data['data'].get('bikes', []):
+        for bike in data['data'].get('bikes', data['data'].get('vehicles', [])):
             last_reported = bike.get('last_reported')
             if isinstance(last_reported, str):
                 try:

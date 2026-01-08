@@ -25,7 +25,7 @@ class GbfsBirdRemoveStationsOrVehiclesConverter(BaseConverter):
                     continue
                 if system_id in ['basel', 'biel', 'kloten', 'zurich'] and feed.get('name') in ['station_information', 'station_status']:
                     continue
-                if system_id in ['sarreguemines'] and feed.get('name') in ['free_bike_status']:
+                if system_id in ['sarreguemines'] and feed.get('name') in ['free_bike_status', 'vehicle_status']:
                     continue
                 new_feeds.append(feed)
 
