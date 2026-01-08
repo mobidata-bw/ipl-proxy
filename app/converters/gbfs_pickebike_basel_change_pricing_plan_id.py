@@ -16,7 +16,7 @@ class GbfsPickebikeBaselChangePricingPlanIdConverter(BaseConverter):
             fields = data.get('data', {})
             if not isinstance(fields, dict):
                 return data
-            vehicles = fields.get('bikes', [])
+            vehicles = fields.get('bikes', fields.get('vehicles', []))
             if not isinstance(vehicles, list):
                 return data
             for vehicle in vehicles:

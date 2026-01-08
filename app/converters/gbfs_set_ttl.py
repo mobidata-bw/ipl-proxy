@@ -22,7 +22,16 @@ class GbfsSetTtlConverter(BaseConverter):
         if not isinstance(data, dict):
             return data
 
-        if not path.endswith(('/station_status', '/station_status.json', '/free_bike_status', '/free_bike_status.json')):
+        if not path.endswith(
+            (
+                '/station_status',
+                '/station_status.json',
+                '/free_bike_status',
+                '/free_bike_status.json',
+                '/vehicle_status',
+                '/vehicle_status.json',
+            )
+        ):
             if 'ttl' not in data or data['ttl'] == 0:
                 data['ttl'] = SECONDS_PER_HOUR
             return data
