@@ -2,7 +2,10 @@
 
 The changelog lists relevant feature changes between each release. Search GitHub issues and pull requests for smaller issues.
 
-## [Unrelease]
+## [Unreleased]
+- for nextbike, add vehicle_types to station's `vehicle_types_availability` according to the potentially available vehicle_types, deduced from the station's name.
+
+## [2026-01-14]
 - add support for GBFSv3
 - for yoio, fix timestamp isoformat (truncate microseconds and set UTC timezone)
 - chore(deps): bump dependencies
