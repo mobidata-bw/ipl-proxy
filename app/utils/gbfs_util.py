@@ -43,10 +43,54 @@ def update_stations_availability_status(station_status: List[Dict], vehicles: Li
         if station_id in status_map:
             _update_station_availability_status(vehicle_types_per_station[station_id], status_map[station_id])
 
-    default_vehicle_types_available = [{'vehicle_type_id': vehicles[0]['vehicle_type_id'], 'count': 0}]
+
+def vehicle_types_available_as_dict(vehicle_types_available: Any) -> dict[str, int]:
+    # Converts a list of vehicle_types_available records into a dict,
+    # using the value of `vehicle_type_id` as key and `count` as value.
+    # Example:
+    #   `[{"vehicle_type_id": "bicycle", "count": 1}]` becomes `{"bicycle": 1}`
+    return {vta.get('vehicle_type_id', 'undefined'): int(vta.get('count')) for vta in vehicle_types_available}
+
+
+def vehicle_types_available_from_dict(vehicle_types_available_dict: dict[str, int]) -> list[dict[str, int | str]]:
+    # Converts a list of vehicle_types_available records into a dict,
+    # using the value of `vehicle_type_id` as key and `count` as value.
+    # Example:
+    #   `{"bicycle": 1}` becomes `[{"vehicle_type_id": "bicycle", "count": 1}]`
+    return [{'vehicle_type_id': vehicle_type_id, 'count': count} for vehicle_type_id, count in vehicle_types_available_dict.items()]
+
+
+def set_vehicle_types_available_defaults(
+    station_status: List[Dict],
+    stations_form_factors: dict[str, list[str]] | None,
+    vehicle_type_form_factors: dict[str, str] | None,
+) -> None:
+    """
+    Updates station_status' vehicle_types_available and num_bikes_available.
+    A vehicle_type is available at a station, when any vehicle of it's type
+    is assigned to this station. However, for the availabilty count,
+    only those vehicles not reserved and not disabled are taken into account.
+    """
+    stations_form_factors = stations_form_factors if stations_form_factors else {}
+    vehicle_type_form_factors = vehicle_type_form_factors if vehicle_type_form_factors else {}
+
     for station in station_status:
-        if 'vehicle_types_available' not in station:
-            station['vehicle_types_available'] = default_vehicle_types_available
+        vehicle_types_available_dict = vehicle_types_available_as_dict(station.get('vehicle_types_available', []))
+
+        station_form_factors = stations_form_factors[str(station.get('station_id'))]
+        if station_form_factors and vehicle_type_form_factors:
+            # Assign all not yet available vehicle_types wich match the form_factors potentially available at that stations
+            for vehicle_type_id in vehicle_type_form_factors:
+                if (
+                    vehicle_type_id not in vehicle_types_available_dict
+                    and vehicle_type_form_factors[vehicle_type_id] in station_form_factors
+                ):
+                    vehicle_types_available_dict[vehicle_type_id] = 0
+        else:
+            if not vehicle_types_available_dict and vehicle_type_form_factors:
+                # Assign any vehicle_type (which might be wrong...)
+                vehicle_types_available_dict[next(iter(vehicle_type_form_factors))] = 0
+        station['vehicle_types_available'] = vehicle_types_available_from_dict(vehicle_types_available_dict)
 
 
 def _count_vehicle_types_at_station(vehicles: list[dict[str, Any]], filter: Callable[[dict], bool]) -> Counter:
