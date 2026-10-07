@@ -30,6 +30,7 @@ class GbfsHttpsToHttpConverter(BaseConverter):
         'api.voiapp.io',
         'gbfs.api.ridedott.com',
         'zeus.city',
+        'zeus.rideatom.com',
         'yoio.rideatom.com',
         'www.share-birrer.ch',
         'auto-birrer.ch',

@@ -14,6 +14,7 @@ class GbfsSetReturnConstraintConverter(BaseConverter):
         'api.voiapp.io',
         'gbfs.api.ridedott.com',
         'zeus.city',
+        'zeus.rideatom.com',
         'yoio.rideatom.com',
     ]
 
@@ -35,7 +36,7 @@ class GbfsSetReturnConstraintConverter(BaseConverter):
                     continue
                 if vehicle_type.get('form_factor', '') == 'bicycle':
                     vehicle_type['return_constraint'] = 'any_station'  # valid for most providers
-                if vehicle_type.get('form_factor', '') == 'scooter':
+                if vehicle_type.get('form_factor', '') in ['scooter', 'scooter_standing', 'scooted_seated']:
                     vehicle_type['return_constraint'] = 'free_floating'  # valid for most providers
                 if path.startswith('/maps/gbfs/v2/nextbike_fg'):
                     vehicle_type['return_constraint'] = 'hybrid'
