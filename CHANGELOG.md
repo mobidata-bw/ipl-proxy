@@ -2,6 +2,9 @@
 
 The changelog lists relevant feature changes between each release. Search GitHub issues and pull requests for smaller issues.
 
+## 2026-10-07
+- adapt set_return_constraint converter to zeus 3.0 feeds
+
 ## 2026-07-24
 - for nextbike, add vehicle_types to station's `vehicle_types_availability` according to the potentially available vehicle_types, deduced from the station's name.
 
