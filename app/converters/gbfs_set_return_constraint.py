@@ -24,7 +24,7 @@ class GbfsSetReturnConstraintConverter(BaseConverter):
         if not isinstance(data, dict):
             return data
 
-        if path.endswith(('/vehicle_types', '/vehicle_types.json')):
+        if path.endswith(('/vehicle_types', '/vehicle_types.json')) or '/vehicle_types?' in path:
             fields = data.get('data')
             if not isinstance(fields, dict):
                 return data
@@ -36,7 +36,7 @@ class GbfsSetReturnConstraintConverter(BaseConverter):
                     continue
                 if vehicle_type.get('form_factor', '') == 'bicycle':
                     vehicle_type['return_constraint'] = 'any_station'  # valid for most providers
-                if vehicle_type.get('form_factor', '') in ['scooter', 'scooter_standing', 'scooted_seated']:
+                if vehicle_type.get('form_factor', '') in ['scooter', 'scooter_standing', 'scooter_seated']:
                     vehicle_type['return_constraint'] = 'free_floating'  # valid for most providers
                 if path.startswith('/maps/gbfs/v2/nextbike_fg'):
                     vehicle_type['return_constraint'] = 'hybrid'
