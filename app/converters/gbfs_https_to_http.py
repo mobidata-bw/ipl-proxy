@@ -50,7 +50,7 @@ class GbfsHttpsToHttpConverter(BaseConverter):
 
         if not isinstance(data, dict):
             return data
-        if not (path.endswith(('/gbfs.json', '/gbfs'))):
+        if not (path.endswith(('/gbfs.json', '/gbfs')) or '/gbfs?' in path):
             return data
 
         if not isinstance(data, dict) or 'data' not in data or not isinstance(data['data'], dict):
