@@ -2,6 +2,9 @@
 
 The changelog lists relevant feature changes between each release. Search GitHub issues and pull requests for smaller issues.
 
+## 2026-10-12
+- deactivate nextbike converters
+
 ## 2026-10-07
 - adapt set_return_constraint converter to zeus 3.0 feeds
 
