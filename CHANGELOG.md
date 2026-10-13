@@ -3,6 +3,7 @@
 The changelog lists relevant feature changes between each release. Search GitHub issues and pull requests for smaller issues.
 
 ## 2026-10-12
+- remove empty station_information/station_status feeds from yoio, zeus
 - deactivate nextbike converters
 
 ## 2026-10-07
