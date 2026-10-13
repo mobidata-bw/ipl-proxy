@@ -27,7 +27,7 @@ class GbfsNextbikeVehicleAvailabilityConverter(BaseConverter):
     will not appear in vehicle_types_available.
     """
 
-    hostnames = ['gbfs.nextbike.net']
+    hostnames = []
 
     # For some feeds, the station names include a substring which
     # identifies the form_factors which might be at rent at that station.

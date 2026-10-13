@@ -4,7 +4,7 @@ from app.base_converter import BaseConverter
 
 
 class GbfsNextbikeSetRangePropertiesConverter(BaseConverter):
-    hostnames = ['gbfs.nextbike.net']
+    hostnames = []
 
     vehicle_types_cache_per_system: dict[str, list[dict]] = {}
 

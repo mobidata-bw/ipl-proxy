@@ -10,7 +10,7 @@ from app.base_converter import BaseConverter
 
 
 class GbfsNextbikeDuplicatesConverter(BaseConverter):
-    hostnames = ['gbfs.nextbike.net']
+    hostnames = []
 
     def convert(self, data: Union[dict, list], path: str) -> Union[dict, list]:
         if not isinstance(data, dict) or not path.startswith('/maps/gbfs/v2/') or not path.endswith('/vehicle_types.json'):
