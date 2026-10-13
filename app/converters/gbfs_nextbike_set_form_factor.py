@@ -4,7 +4,7 @@ from app.base_converter import BaseConverter
 
 
 class GbfsNextbikeSetFormFactorConverter(BaseConverter):
-    hostnames = ['gbfs.nextbike.net']
+    hostnames = []
 
     def convert(self, data: Union[dict, list], path: str) -> Union[dict, list]:
         if not isinstance(data, dict):
