@@ -4,7 +4,7 @@ from app.base_converter import BaseConverter
 
 
 class GbfsDonkeyKreuzlingenSetCurrentRangeMetersConverter(BaseConverter):
-    hostnames = ['stables.donkey.bike']
+    hostnames = []
 
     @staticmethod
     def _get_system_id_from_path(path: str) -> str:

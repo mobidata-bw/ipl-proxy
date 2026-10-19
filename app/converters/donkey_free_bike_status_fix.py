@@ -24,7 +24,7 @@ class DonkeyFreeBikeStatusConverter(BaseConverter):
     * last_reported is encoded as iso formatted string, while in GBFS v2.3 still seconds since epoch is expected
     """
 
-    hostnames = ['stables.donkey.bike']
+    hostnames = []
 
     @staticmethod
     def _convert_str_to_float(bike: dict[str, Any], property: str) -> None:
