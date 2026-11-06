@@ -27,7 +27,7 @@ class GbfsNextbikeVehicleAvailabilityConverter(BaseConverter):
     will not appear in vehicle_types_available.
     """
 
-    hostnames = []
+    hostnames = ['gbfs.nextbike.net']
 
     # For some feeds, the station names include a substring which
     # identifies the form_factors which might be at rent at that station.
@@ -45,7 +45,7 @@ class GbfsNextbikeVehicleAvailabilityConverter(BaseConverter):
     form_factors_by_vehicle_type_id: dict[str, dict[str, str]] = {}
 
     def convert(self, data: dict | list, path: str) -> dict | list:
-        if not isinstance(data, dict) or not path.startswith('/maps/gbfs/v2/'):
+        if not isinstance(data, dict) or not path.startswith('/maps/gbfs/v2/nextbike_kk/'):
             return data
 
         system_id = self._get_system_id_from_path(path)
