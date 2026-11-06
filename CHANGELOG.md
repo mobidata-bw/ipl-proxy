@@ -2,6 +2,9 @@
 
 The changelog lists relevant feature changes between each release. Search GitHub issues and pull requests for smaller issues.
 
+## 2026-11-06
+- reactivate nextbike_vehicle_availabilities for nextbike_kk
+
 ## 2026-10-19
 - deactivate donkey converters
 
